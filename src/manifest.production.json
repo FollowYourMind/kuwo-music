@@ -6,5 +6,23 @@
     "options_page": "options.html",
     "browser_action": {
         "default_popup": "popup.html"
-    }
+    },
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ]
+    },
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["js/content.js"],
+        "run_at": "document_end"
+    }],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "storage",
+        "http://*/*",
+        "https://*/*"
+    ]
 }
