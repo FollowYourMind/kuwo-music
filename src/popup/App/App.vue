@@ -10,6 +10,8 @@
 </template>
 
 <script>
+    import {searchMusicByKeyword} from "../../api/api";
+
     export default {
         name: 'app',
         data() {
@@ -25,7 +27,7 @@
                     pn: 1,
                     rn: 30
                 }
-                this.$axios.get('http://www.kuwo.cn/api/www/search/searchMusicBykeyWord', {params: params}).then(res => {
+                searchMusicByKeyword(params).then(res => {
                     this.content = JSON.stringify(res);
                 })
             }
