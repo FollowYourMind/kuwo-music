@@ -1,9 +1,10 @@
 <template>
     <div class="main_app">
         <h1>Hello popup</h1>
-        <el-button type="primary" @click="test">百度一下，你就知道</el-button>
+        <el-button type="primary" @click="test">酷搜</el-button>
+        <el-input placeholder="请输入关键词..." v-model="keyword"></el-input>
         <el-card class="box-card">
-            <div v-html="content"></div>
+            <pre>{{content}}</pre>
         </el-card>
     </div>
 </template>
@@ -13,13 +14,19 @@
         name: 'app',
         data() {
             return {
+                keyword: null,
                 content: 'nothing'
             }
         },
         methods: {
             test() {
-                this.$axios.get('https://www.baidu.com').then(response => {
-                    this.content = response;
+                let params = {
+                    key: this.keyword,
+                    pn: 1,
+                    rn: 30
+                }
+                this.$axios.get('http://www.kuwo.cn/api/www/search/searchMusicBykeyWord', {params: params}).then(res => {
+                    this.content = JSON.stringify(res);
                 })
             }
         }

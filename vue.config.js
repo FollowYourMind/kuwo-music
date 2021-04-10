@@ -34,7 +34,7 @@ module.exports = {
     configureWebpack: {
         entry: {
             background: './src/background/background.js',
-            content: './src/content/content.js'
+            content: './src/content/content.js',
         },
         output: {
             filename: 'js/[name].js'
